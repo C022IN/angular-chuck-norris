@@ -1,0 +1,21 @@
+<mat-card class="joke-container" [ngStyle]="{ 'background-color': backgroundColor }">
+    <mat-card-content *ngIf="!isLoading">
+      <p class="joke-text">{{ joke }}</p>
+    </mat-card-content>
+    
+    <mat-card-content *ngIf="isLoading">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </mat-card-content>
+  
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="onNewJokeButton()">
+        <mat-icon>autorenew</mat-icon> Next Joke
+      </button>
+      
+      <button mat-raised-button color="accent" [disabled]="addedToFavorites" (click)="addJokeToFavorites()">
+        <mat-icon>favorite</mat-icon>
+        {{ addedToFavorites ? 'Added to Favorites' : 'Add to Favorites' }}
+      </button>
+    </div>
+  </mat-card>
+  

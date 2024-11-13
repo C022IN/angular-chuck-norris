@@ -1,0 +1,20 @@
+.joke-container {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .joke-text {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  

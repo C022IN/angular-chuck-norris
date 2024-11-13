@@ -1,0 +1,26 @@
+<mat-toolbar class="app-bar"> 
+    <div class="logo">
+      <img src="assets/Chuck.jpeg" alt="Chuck Logo" />
+    </div>
+    <span class="title" (click)="navigateTo('/')">Chuckychuck</span>
+  
+    <!-- Navigation Links for Larger Screens -->
+    <div class="nav-links" *ngIf="pages.length > 0">
+      <ng-container *ngFor="let page of pages">
+        <button mat-button class="nav-button" (click)="navigateTo(page.route)">
+          {{ page.title }}
+        </button>
+      </ng-container>
+    </div>
+  
+    <!-- User Profile and Menu -->
+    <button mat-icon-button [matMenuTriggerFor]="userMenu">
+      <img class="user-icon" src="assets/Chucky.png" alt="User Profile" />
+    </button>
+  
+    <!-- User Menu Dropdown -->
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </mat-toolbar>
+  

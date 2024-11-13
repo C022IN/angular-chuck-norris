@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <span>Chuckychuck</span>
+</mat-toolbar>
+
+<div class="home-content">
+  <h1>Welcome to Chuckychuck</h1>
+  <app-random-joke></app-random-joke> <!-- This will load the random joke component -->
+
+  <button mat-raised-button (click)="toggleFavorites()">Toggle Favorites</button> <!-- Toggle favorites list -->
+
+  <app-favorites *ngIf="showFavorites"></app-favorites> <!-- Display favorites conditionally -->
+</div>
