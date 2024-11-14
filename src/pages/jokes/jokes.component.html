@@ -1,1 +1,27 @@
-<p>jokes works!</p>
+<div class="jokes-page">
+    <h1>Chuck Norris Jokes</h1>
+  
+    <!-- Random Joke Section -->
+    <section>
+      <h2>Random Joke</h2>
+      <app-random-joke></app-random-joke>
+    </section>
+  
+    <!-- Add Custom Joke Section -->
+    <section>
+      <h2>Add Your Joke</h2>
+      <app-my-joke></app-my-joke>
+    </section>
+  
+    <!-- Favorites Section -->
+    <section>
+      <h2>Your Favorite Jokes</h2>
+      <ul *ngIf="jokes$ | async as jokesList">
+        <li *ngFor="let joke of jokesList">
+          {{ joke }}
+        </li>
+      </ul>
+      <p *ngIf="!(jokes$ | async)?.length">No favorites yet.</p>
+    </section>
+  </div>
+  

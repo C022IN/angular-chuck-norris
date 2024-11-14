@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http'; // Import HttpClient for API calls
-import { MatSnackBar } from '@angular/material/snack-bar'; // For snack bar notifications
-import { MatCardModule } from '@angular/material/card'; // Import mat-card module
-import { MatButtonModule } from '@angular/material/button'; // Import mat-button module
-import { MatIconModule } from '@angular/material/icon'; // Import mat-icon module
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; // Import mat-spinner module
-import { CommonModule } from '@angular/common'; // Import CommonModule for ngStyle
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CommonModule } from '@angular/common';
+import { ChuckNorrisJoke } from '../../models/joke.model';
 
 @Component({
   selector: 'app-random-joke',
   standalone: true,
   imports: [
-    CommonModule,  // Import CommonModule for ngStyle and other directives
+    CommonModule,
     MatCardModule, 
     MatButtonModule, 
     MatIconModule, 
@@ -22,29 +23,29 @@ import { CommonModule } from '@angular/common'; // Import CommonModule for ngSty
   styleUrls: ['./random-joke.component.scss']
 })
 export class RandomJokeComponent implements OnInit {
-  joke: string | undefined = undefined; // Initialize as undefined
+  joke: ChuckNorrisJoke | null = null; // Define the joke as null initially
   isLoading: boolean = true;
   addedToFavorites: boolean = false;
-  backgroundColor: string = '#fffacd'; // Initial background color
+  backgroundColor: string = '#fffacd';
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    this.fetchJoke(); // Fetch the joke when the component initializes
+    this.fetchJoke();
   }
 
   // Fetch joke from the API
   fetchJoke(): void {
     this.isLoading = true;
 
-    // Call the Chuck Norris joke API (example URL, replace it with the actual one)
-    this.http.get<any>('https://api.chucknorris.io/jokes/random')
+    // Fetch joke from the Chuck Norris API
+    this.http.get<ChuckNorrisJoke>('https://api.chucknorris.io/jokes/random')
     .subscribe({
       next: (response) => {
-        this.joke = response.value; // Set the joke data from the API response
+        this.joke = response; // Use response directly as it is of type ChuckNorrisJoke
         this.isLoading = false;
       },
-      error: (err) => {
+      error: () => {
         this.isLoading = false;
         this.snackBar.open('Failed to load joke. Try again later.', 'Close', { duration: 3000 });
       }
@@ -53,7 +54,7 @@ export class RandomJokeComponent implements OnInit {
 
   // Fetch a new joke and update background color
   onNewJokeButton(): void {
-    this.fetchJoke(); // Refetch a new joke when the button is clicked
+    this.fetchJoke();
     this.setRandomBackgroundColor();
   }
 

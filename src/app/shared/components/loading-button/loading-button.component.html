@@ -1,1 +1,8 @@
-<p>loading-button works!</p>
+
+<button mat-button
+        [disabled]="disabled || loading"
+        [ngStyle]="buttonStyle"
+        [color]="color">
+  <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+  <ng-content></ng-content> <!-- Allows insertion of content inside the button -->
+</button>

@@ -1,1 +1,9 @@
-<p>my-joke works!</p>
+<div>
+    <h3>Add Your Joke</h3>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your joke</mat-label>
+      <input matInput [(ngModel)]="joke" placeholder="Type your joke here" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addJokeToFavorites()">Add to Favorites</button>
+  </div>
+  
